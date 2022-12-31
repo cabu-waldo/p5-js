@@ -1,0 +1,22 @@
+h1 {
+    color: #ed225d;
+    text-align: center;
+}
+
+.link-list {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    padding: 5px;
+}
+
+.link-list a {
+    border: 1px solid silver;
+
+    color: black;
+    font-weight: bold;
+    text-align: center;
+
+    padding: 20px;
+    margin: 10px;
+}
