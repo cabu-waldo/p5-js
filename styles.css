@@ -4,6 +4,14 @@ h1 {
     margin: 30px;
 }
 
+h1 .p5 {
+    font-weight: bold;
+    /* border: 1px solid black; */
+    letter-spacing: 2px;
+    font-size: 1.3em;
+    margin: 5px;
+}
+
 .link-list {
     display: flex;
     flex-direction: column;
@@ -25,4 +33,9 @@ h1 {
     width: 100%;
     max-width: 500px;;
     
+}
+
+.link-list a:hover {
+    border: 1px solid grey;
+    background-color: rgb(235, 235, 235);
 }
