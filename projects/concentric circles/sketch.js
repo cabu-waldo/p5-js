@@ -5,7 +5,7 @@ class CirclePlus {
     this.x = x;
     this.y = y;
     this.n_circles = 5;
-    this.dim_coef = 50;
+    this.dim_coef = 30;
     // this.gray_scale = 255;
     this.gray_scale = random() < 0.66 ? 255 : 0
   }
@@ -18,7 +18,7 @@ class CirclePlus {
   }
 
   update() {
-    this.dim_coef *= 0.9985
+    this.dim_coef *= 0.995
   }
 }
 
@@ -32,11 +32,14 @@ function setup() {
 }
 
 function draw() {
-  background(0)
-  for (const circle_plus of circle_plus_list) {
-    circle_plus.draw()
-    circle_plus.update()
+  if (!mouseIsPressed) {
+    background(0)
+    for (const circle_plus of circle_plus_list) {
+      circle_plus.draw()
+      circle_plus.update()
+    }
   }
+  
 }
 
 function mouseClicked() {
