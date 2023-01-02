@@ -19,7 +19,7 @@ class CirclePlus {
   }
 
   update() {
-    this.dim_coef *= 0.998
+    this.dim_coef *= 0.993
   }
 }
 
