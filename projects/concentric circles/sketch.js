@@ -1,29 +1,31 @@
 
 class CirclePlus {
 
-  constructor(x, y) {
+  constructor(x, y, col) {
     this.x = x;
     this.y = y;
-    this.n_circles = 5;
+    this.n_circles = 10;
+
     this.dim_coef = 30;
-    // this.gray_scale = 255;
-    this.gray_scale = random() < 0.66 ? 255 : 0
+    this.color = col
+    this.color.setAlpha(1/this.n_circles)
   }
 
   draw() {
-    fill(this.gray_scale, 60)
+    fill(this.color)
     for (let i = 1; i <= this.n_circles; i++) {
       circle(this.x ,this.y , i*this.dim_coef)
     }
   }
 
   update() {
-    this.dim_coef *= 0.995
+    this.dim_coef *= 0.998
   }
 }
 
 
 function setup() {
+  colorMode(HSB)
   createCanvas(windowWidth, windowHeight);
   noStroke();
   frameRate(40)
@@ -43,5 +45,14 @@ function draw() {
 }
 
 function mouseClicked() {
-  circle_plus_list.push(new CirclePlus(mouseX, mouseY))
+
+
+  // pick random color
+  colors = [
+    color(0,0,100),
+    color(201, 100, 29),
+  ]
+  var random_color = colors[floor(random()*colors.length)];
+
+  circle_plus_list.push(new CirclePlus(mouseX, mouseY, random_color))
 }
