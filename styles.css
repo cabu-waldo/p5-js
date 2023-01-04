@@ -39,3 +39,9 @@ h1 .p5 {
 .link-list a:hover {
     background-color: rgb(235, 235, 235);
 }
+
+hr {
+    color: black;
+    margin: 20px;
+    width: 300px;
+}
