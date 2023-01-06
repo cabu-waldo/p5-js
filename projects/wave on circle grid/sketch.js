@@ -1,8 +1,8 @@
 
 
 let n_rows = 15
-let margin = 50
-let noise_amp = 10
+let margin = 15
+let noise_amp = 15
 let cell_size
 let f = 0.25
 let frequency = 2
