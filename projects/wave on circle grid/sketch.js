@@ -23,14 +23,10 @@ function setup() {
 }
 
 function draw() {
-
-  dist()
-
-
+  
   fill(255)
   stroke(255)
   strokeWeight(1)
-
   background(0);
 
   for (let i = 0; i < n_rows ; i++) {
