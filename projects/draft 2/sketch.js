@@ -9,12 +9,16 @@ function setup() {
   rectMode(CENTER);
   angleMode(DEGREES);
   
-  sliderNb = createSlider(2, 50, nb, 1);
+  sliderNb = createSlider(2, 100, nb, 1);
+  sliderRot = createSlider(0, 6, rot);
+  sliderFmin = createSlider(0.0, 1, fmin, 0.05);
 }
 
 function draw() {
   
   nb = sliderNb.value()
+  rot = sliderRot.value()
+  fmin = sliderFmin.value()
 
   background(0);
   translate(width/2,height/2);
