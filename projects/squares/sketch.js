@@ -1,6 +1,8 @@
-let n_squares = 10;
+let n_squares = 40;
 let init_size = 0.6;
 let init_angle = 45;
+let zoom_speed = 1.02;
+let rotation_speed = 0.5;
 
 let palet = [
   "#f7b267",
@@ -35,13 +37,14 @@ function draw() {
     angle += 45;
   }
 
-  // draw_multiple_squares(width/2, height/2, 0.4, 45)
-  // draw_multiple_squares(width/2, height/2, 0.26, 90)
-  // draw_multiple_squares(width/2, height/2, 0.17, 135)
-  // draw_multiple_squares(width/2, height/2, 0.11, 180)
-  // draw_multiple_squares(width/2, height/2, 0.07, 225)
-  // draw_multiple_squares(width/2, height/2, 0.045, 270)
-  
+  if (mouseIsPressed) {
+    init_angle += rotation_speed;
+    init_size *= zoom_speed;
+    if (init_size > 15) {
+      init_size = 0.6
+    }    
+    
+  }
 }
 
 function draw_multiple_squares(x, y, width_percent=1, angle_pos=50, angle_size=30) {
