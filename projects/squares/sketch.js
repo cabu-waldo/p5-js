@@ -1,8 +1,44 @@
-let n_squares = 40;
-let init_size = 0.6;
-let init_angle = 45;
-let zoom_speed = 1.02;
-let rotation_speed = 0.5;
+
+
+class MultipleSquares {
+
+  constructor(x, y, color, fig_width=0.6, angle=45, len_angle=30, rotation_speed=0.5) {
+
+    this.x = x;
+    this.y = y;
+    this.fig_width = fig_width;
+    this.angle = angle;
+    this.len_angle = len_angle;
+    this.color = color;
+
+    this.zoom_speed = 1.02;
+    this.rotation_speed = rotation_speed;
+
+  }
+
+  draw() {
+    noFill();
+    strokeWeight(0.7)
+    stroke(this.color);  
+
+    let n_square = map(this.fig_width, 0.2, 1, 15, 60) 
+    
+    push()
+    translate(this.x, this.y)
+    rotate(this.angle)
+    for (let i = 0; i < n_square; i++) {
+      rotate(this.len_angle / n_square);
+      square(0, 0, window_size * this.fig_width)
+    }
+    pop()
+  }
+
+  update() {
+    this.angle += this.rotation_speed;
+    this.fig_width *= this.zoom_speed;
+  }
+  
+}
 
 let palet = [
   "#f7b267",
@@ -16,48 +52,56 @@ let palet = [
   "#f7b267",
 ]
 
+let msquare_list = [];
+let n_msquare = 100;
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER)
   angleMode(DEGREES)
   window_size = (width > height ? height : width)
+
+  let mrect_width = 0.4;
+  let mrect_angle = 75;
+  for (let i = 0; i < n_msquare; i++) {
+    msquare_list.push(
+      new MultipleSquares(
+        x=width/2,
+        y=height/2,
+        color=palet[i%palet.length],
+        fig_width=mrect_width,
+        angle=mrect_angle,
+        len_angle=30,
+        rotation_speed = 0.5
+      )
+
+      ) 
+      
+    mrect_width *= 0.69;
+    mrect_angle += 45;
+  }
+
 }
+
+
 
 function draw() {
   background("#FFE8BA");
-  noFill();
-  stroke("#ff9f1c");
-
-  size = init_size;
-  angle = init_angle
-  for (let i = 0; i < n_squares; i++) {
-    stroke(palet[i % palet.length])
-    draw_multiple_squares(width/2, height/2, size, angle)
-    size *= 0.69;
-    angle += 45;
+  for (const msquare of msquare_list) {
+    msquare.draw()
   }
-
-  if (mouseIsPressed) {
-    init_angle += rotation_speed;
-    init_size *= zoom_speed;
-    if (init_size > 15) {
-      init_size = 0.6
-    }    
-    
-  }
-}
-
-function draw_multiple_squares(x, y, width_percent=1, angle_pos=50, angle_size=30) {
   
-  n_square = map(width_percent, 0.2, 1, 15, 60)
-
-  push()
-  translate(x, y)
-  rotate(angle_pos)
-  for (let i = 0; i < n_square; i++) {
-    rotate(angle_size / n_square);
-    square(0, 0, window_size * width_percent)
+  //del big rects
+  if (msquare_list[0].fig_width > 3) {
+    msquare_list.shift()
   }
-  pop()
-  // translate(-x, -y)
+  
+  if (mouseIsPressed) {
+    for (const msquare of msquare_list) {
+      msquare.update()
+    }
+  }
+  
 }
+
+
